@@ -44,6 +44,7 @@ export const AuthProvider = ({ children }: any) => {
       const userCredential = await firebaseLogin(email, password);
       setUser({ email: userCredential.email, uid: userCredential.uid });
       setError(null);
+      console.log(userCredential)
       router.replace("/");
     } catch (e: any) {
       setError(e);
@@ -69,7 +70,7 @@ export const AuthProvider = ({ children }: any) => {
     try {
       await firebaseLogout();
       setUser(null);
-      router.replace("/auth");
+      router.replace("/(auth)");
     } catch (e) {
       console.error("Logout failed:", e);
     }

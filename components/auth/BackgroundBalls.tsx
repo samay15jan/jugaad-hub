@@ -1,4 +1,5 @@
 import { BlurView } from 'expo-blur';
+import { Image } from 'expo-image';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Dimensions, Text, View } from 'react-native';
 
@@ -42,17 +43,7 @@ const BackgroundBalls = () => {
   }, []);
 
   return (
-    <View className='flex-1 absolute'>
-      <View className="p-4 items-center">
-        <View className="flex-row justify-between w-full px-16">
-          <View className="rounded-full w-36 h-36 bg-[#e1f7fb] mb-4" />
-          <View className="rounded-full w-32 h-32 bg-[#ffd4d5]" />
-        </View>
-        <BlurView intensity={100} className='bg-white'>
-          <Text className='text-white w-10'>Hola</Text>
-        </BlurView>
-        <View className="rounded-full w-28 h-28 bg-[#cdfacf] ml-10" />
-      </View>
+    <View className="flex-1 absolute bg-black mt-20">
       {balls.map((ball, idx) => (
         <Animated.View
           key={idx}
@@ -65,6 +56,65 @@ const BackgroundBalls = () => {
           }}
         />
       ))}
+      <View className="absolute top-10 w-screen p-4 items-center">
+        <View className="flex-row justify-between w-full px-16">
+          <View
+            style={{
+              backgroundColor: "#e1f7fb",
+              borderRadius: 100,
+              alignSelf: "center",
+              overflow: "hidden",
+            }}
+          >
+            <Image
+              source={require('@/assets/images/icons/person_1.jpg')}
+              style={{ width: 120, height: 120, transform: [{ rotate: '350deg' }] }}
+              contentFit="cover"
+            />
+          </View>
+
+          <View
+            style={{
+              backgroundColor: "#ffd4d5",
+              borderRadius: 100,
+              alignSelf: "center",
+              overflow: "hidden",
+            }}
+          >
+            <Image
+              source={require('@/assets/images/icons/person_4.jpg')}
+              style={{
+                width: 100, height: 100, transform: [{ rotate: '10deg' }],
+              }}
+              contentFit="cover"
+            />
+          </View>
+        </View>
+        <View className='absolute top-28 z-10'>
+          <BlurView intensity={100} className="px-14 py-6 bg-white"
+            style={{
+              borderRadius: 100,
+              transform: [{ rotate: '340deg' }]
+            }}>
+            <Text className="text-white font-extrabold text-3xl mt-1 ml-6 absolute" style={{ transform: [{ rotate: '360deg' }] }}>Hola</Text>
+          </BlurView>
+        </View>
+
+        <View
+          style={{
+            backgroundColor: "#cdfacf",
+            borderRadius: 100,
+            alignSelf: "center",
+            overflow: "hidden",
+          }}
+        >
+          <Image
+            source={require('@/assets/images/icons/person_2.jpg')}
+            style={{ width: 100, height: 100, transform: [{ rotate: '350deg' }] }}
+            contentFit="cover"
+          />
+        </View>
+      </View>
     </View>
   );
 };
